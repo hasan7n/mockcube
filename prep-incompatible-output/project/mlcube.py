@@ -10,8 +10,7 @@ app = typer.Typer()
 def exec_python(cmd: str) -> None:
     splitted_cmd = cmd.split()
 
-    process = subprocess.Popen(splitted_cmd, cwd=".")
-    process.wait()
+    subprocess.run(splitted_cmd, cwd=".", check=True)
 
 
 class PrepareTask(object):
@@ -62,6 +61,7 @@ class StatisticsTask(object):
     def run(data_path: str, params_file: str, out_path: str) -> None:
         cmd = f"python3 statistics.py --data_path={data_path} --params_file={params_file} --out_path={out_path}"
         exec_python(cmd)
+
 
 @app.command("prepare")
 def prepare(
