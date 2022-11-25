@@ -1,18 +1,19 @@
-name: mockmodel
-description: mockmodel
+name: mockmodelgpu
+description: mockmodelgpu
 authors:
  - {name: "Hasan Kassem"}
 
 platform:
-  accelerator_count: 0
+  accelerator_count: 1
 
 docker:
   # Image name.
-  image: hasan7/mock-model:0.0.0
+  image: hasan7/mock-model-gpu:0.0.0
   # Docker build context relative to $MLCUBE_ROOT. Default is `build`.
   build_context: "../project"
   # Docker file name within docker build context, default is `Dockerfile`.
   build_file: "Dockerfile"
+  gpu_args: "--gpus all"
 
 tasks:
   infer:
@@ -21,5 +22,6 @@ tasks:
         data_path: data/
         parameters_file: parameters.yaml
         weights: additional_files/weights
+
         
       outputs: {output_path: {type: directory, default: predictions}}
