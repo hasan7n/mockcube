@@ -33,7 +33,9 @@ class Inference:
         with open(os.path.join(self.out_path, "preds.txt"), "w") as f:
             f.write("\n".join(list(map(str, preds[: len(preds) - 1]))) + "\n")
 
-        raise Exception("I am a bug!")
+        if cases != ["2 3 4", "9 0"]:
+            # this model doesn't raise an exception only with a specific demo dset
+            raise Exception("I am a bug!")
 
 
 if __name__ == "__main__":
