@@ -1,0 +1,22 @@
+name: mockmodelcpusing
+description: mockmodelcpusing
+authors:
+  - { name: "Hasan Kassem" }
+
+platform:
+  accelerator_count: 0
+
+singularity:
+  # Image name.
+  image: mock-model-cpu.simg
+  run_args: "-C --writable-tmpfs --net --network=none --nv"
+
+tasks:
+  infer:
+    parameters:
+      inputs:
+        data_path: data/
+        parameters_file: parameters.yaml
+        weights: additional_files/weights
+
+      outputs: { output_path: { type: directory, default: predictions } }
