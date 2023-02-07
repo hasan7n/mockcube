@@ -1,7 +1,7 @@
 name: mockprep
 description: mockprep
 authors:
- - {name: "Hasan Kassem"}
+  - { name: "Hasan Kassem" }
 
 platform:
   accelerator_count: 0
@@ -13,6 +13,11 @@ docker:
   build_context: "../project"
   # Docker file name within docker build context, default is `Dockerfile`.
   build_file: "Dockerfile"
+
+singularity:
+  # Image name.
+  image: mock-prep.simg
+  run_args: "-C --writable-tmpfs --net --network=none --nv"
 
 tasks:
   prepare:

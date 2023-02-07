@@ -1,7 +1,7 @@
 name: mockmetrics
 description: mockmetrics
 authors:
- - {name: "Hasan Kassem"}
+  - { name: "Hasan Kassem" }
 
 platform:
   accelerator_count: 0
@@ -14,9 +14,19 @@ docker:
   # Docker file name within docker build context, default is `Dockerfile`.
   build_file: "Dockerfile"
 
+singularity:
+  # Image name.
+  image: mock-metrics.simg
+  run_args: "-C --writable-tmpfs --net --network=none --nv"
+
 tasks:
   evaluate:
-  # Executes a number of metrics specified by the params file
+    # Executes a number of metrics specified by the params file
     parameters:
-      inputs: {predictions: predictions/, labels: data/, parameters_file: parameters.yaml}
-      outputs: {output_path: {type: "file", default: "results.yaml"}}
+      inputs:
+        {
+          predictions: predictions/,
+          labels: data/,
+          parameters_file: parameters.yaml,
+        }
+      outputs: { output_path: { type: "file", default: "results.yaml" } }
