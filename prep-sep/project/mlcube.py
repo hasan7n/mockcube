@@ -2,7 +2,7 @@
 
 import typer
 import subprocess
-
+import os
 
 app = typer.Typer()
 
@@ -10,7 +10,7 @@ app = typer.Typer()
 def exec_python(cmd: str) -> None:
     splitted_cmd = cmd.split()
 
-    subprocess.run(splitted_cmd, cwd=".", check=True)
+    subprocess.run(splitted_cmd, cwd=os.path.dirname(__file__), check=True)
 
 
 class PrepareTask(object):
@@ -94,7 +94,7 @@ def sanity_check(
 
 
 @app.command("statistics")
-def sanity_check(
+def statistics(
     data_path: str = typer.Option(..., "--data_path"),
     labels_path: str = typer.Option(..., "--labels_path"),
     parameters_file: str = typer.Option(..., "--parameters_file"),

@@ -2,7 +2,7 @@
 
 import typer
 import subprocess
-
+import os
 
 app = typer.Typer()
 
@@ -10,7 +10,7 @@ app = typer.Typer()
 def exec_python(cmd: str) -> None:
     splitted_cmd = cmd.split()
 
-    subprocess.run(splitted_cmd, cwd=".", check=True)
+    subprocess.run(splitted_cmd, cwd=os.path.dirname(__file__), check=True)
 
 
 class InferenceTask(object):

@@ -2,7 +2,7 @@
 
 import typer
 import subprocess
-
+import os
 
 app = typer.Typer()
 
@@ -25,7 +25,7 @@ class EvaluateTask(object):
         cmd = f"python3 metrics.py --preds_path={preds_path} --parameters_file={parameters_file} --output_file={output_file} --labels_path={labels}"
         splitted_cmd = cmd.split()
 
-        subprocess.run(splitted_cmd, cwd=".", check=True)
+        subprocess.run(splitted_cmd, cwd=os.path.dirname(__file__), check=True)
 
 
 @app.command("evaluate")

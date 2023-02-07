@@ -1,7 +1,7 @@
 name: mockmodelgpu
 description: mockmodelgpu
 authors:
- - {name: "Hasan Kassem"}
+  - { name: "Hasan Kassem" }
 
 platform:
   accelerator_count: 1
@@ -15,6 +15,11 @@ docker:
   build_file: "Dockerfile"
   gpu_args: "--gpus all"
 
+singularity:
+  # Image name.
+  image: mock-model-gpu.simg
+  run_args: "-C --writable-tmpfs --net --network=none --nv"
+
 tasks:
   infer:
     parameters:
@@ -23,5 +28,4 @@ tasks:
         parameters_file: parameters.yaml
         weights: additional_files/weights
 
-        
-      outputs: {output_path: {type: directory, default: predictions}}
+      outputs: { output_path: { type: directory, default: predictions } }
