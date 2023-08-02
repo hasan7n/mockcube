@@ -15,11 +15,6 @@ docker:
   build_file: "Dockerfile"
   gpu_args: "--gpus all"
 
-singularity:
-  # Image name.
-  image: mock-model-gpu.simg
-  run_args: "-C --writable-tmpfs --net --network=none --nv"
-
 tasks:
   infer:
     parameters:
