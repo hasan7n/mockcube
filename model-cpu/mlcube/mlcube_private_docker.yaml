@@ -1,5 +1,5 @@
-name: mockmodelcpu-sing
-description: mockmodelcpu-sing
+name: mockmodelcpu-priv
+description: mockmodelcpu-priv
 authors:
   - { name: "Hasan Kassem" }
 
@@ -8,16 +8,11 @@ platform:
 
 docker:
   # Image name.
-  image: hasan7/mock-model-cpu:0.0.0
+  image: docker.synapse.org/syn51060790/mock-model-cpu:0.0.0
   # Docker build context relative to $MLCUBE_ROOT. Default is `build`.
   build_context: "../project"
   # Docker file name within docker build context, default is `Dockerfile`.
   build_file: "Dockerfile"
-
-singularity:
-  # Image name.
-  image: mock-model-cpu.simg
-  run_args: "-C --writable-tmpfs --net --network=none --nv"
 
 tasks:
   infer:
