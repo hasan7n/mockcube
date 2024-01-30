@@ -9,7 +9,6 @@ platform:
 singularity:
   # Image name.
   image: mock-model-cpu.simg
-  run_args: "-C --writable-tmpfs --net --network=none --nv"
 
 tasks:
   infer:
