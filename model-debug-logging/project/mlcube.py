@@ -1,5 +1,7 @@
 """MLCube handler file"""
 import os
+import logging
+logging.getLogger().setLevel(os.getenv('MEDPERF_LOGLEVEL', 'WARNING'))
 
 import typer
 import yaml
