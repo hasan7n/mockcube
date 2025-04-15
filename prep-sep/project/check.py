@@ -1,6 +1,5 @@
 import os
 import yaml
-import argparse
 
 
 class SanityChecks:
@@ -23,31 +22,9 @@ class SanityChecks:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "--data_path",
-        "--data-path",
-        type=str,
-        required=True,
-        help="location of prepared data",
+    sanity_checker = SanityChecks(
+        "/medperf_data",
+        "/medperf_labels",
+        "/medperf_parameters.yaml",
     )
-    parser.add_argument(
-        "--labels_path",
-        "--labels-path",
-        type=str,
-        required=True,
-        help="location of prepared data",
-    )
-    parser.add_argument(
-        "--params_file",
-        "--params-file",
-        type=str,
-        required=True,
-        help="Configuration file for the data-preparation step",
-    )
-
-    args = parser.parse_args()
-    sanity_checker = SanityChecks(args.data_path, args.labels_path, args.params_file,)
     sanity_checker.run()
-

@@ -1,6 +1,5 @@
 import os
 import yaml
-import argparse
 import numpy as np
 
 
@@ -36,43 +35,10 @@ class Statistics:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "--data_path",
-        "--data-path",
-        type=str,
-        required=True,
-        help="location of prepared data",
-    )
-
-    parser.add_argument(
-        "--labels_path",
-        "--labels-path",
-        type=str,
-        required=True,
-        help="location of prepared data",
-    )
-
-    parser.add_argument(
-        "--params_file",
-        "--params-file",
-        type=str,
-        required=True,
-        help="Configuration file for the data-preparation step",
-    )
-
-    parser.add_argument(
-        "--out_path",
-        "--out-path",
-        type=str,
-        required=True,
-        help="output file to store the statistics",
-    )
-
-    args = parser.parse_args()
     statistics_calculator = Statistics(
-        args.data_path, args.labels_path, args.params_file, args.out_path
+        "/medperf_data",
+        "/medperf_labels",
+        "/medperf_parameters.yaml",
+        "/medperf_statistics.yaml",
     )
     statistics_calculator.run()
-

@@ -1,4 +1,2 @@
-typer
 PyYAML
 tqdm
-typing-extensions

@@ -6,12 +6,10 @@ COPY ./requirements.txt project/requirements.txt
 
 ENV LANG C.UTF-8
 
-COPY ./requirements.txt project/requirements.txt 
-
 RUN pip3 install --no-cache-dir -r project/requirements.txt
 
 COPY . /project
 
 WORKDIR /project
 
-ENTRYPOINT ["python3", "/project/mlcube.py"]
+ENTRYPOINT ["python3", "/project/metrics.py"]

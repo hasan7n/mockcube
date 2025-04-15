@@ -1,6 +1,5 @@
 import os
 import yaml
-import argparse
 
 
 class DataPreparation:
@@ -40,54 +39,11 @@ class DataPreparation:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "--data_path",
-        "--data-path",
-        type=str,
-        required=True,
-        help="Location of videos",
-    )
-
-    parser.add_argument(
-        "--labels_path",
-        "--labels-path",
-        type=str,
-        required=True,
-        help="Location of labels",
-    )
-
-    parser.add_argument(
-        "--params_file",
-        "--params-file",
-        type=str,
-        required=True,
-        help="Configuration file for the data-preparation step",
-    )
-
-    parser.add_argument(
-        "--output_path",
-        "--output-path",
-        type=str,
-        required=True,
-        help="Location to store the prepared data",
-    )
-    parser.add_argument(
-        "--output_labels_path",
-        "--output-labels-path",
-        type=str,
-        required=True,
-        help="Location to store the prepared data",
-    )
-
-    args = parser.parse_args()
     preprocessor = DataPreparation(
-        args.data_path,
-        args.labels_path,
-        args.params_file,
-        args.output_path,
-        args.output_labels_path,
+        "/medperf_raw_data",
+        "/medperf_raw_labels",
+        "/medperf_parameters.yaml",
+        "/medperf_data",
+        "/medperf_labels",
     )
     preprocessor.run()
-

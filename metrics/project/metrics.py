@@ -1,4 +1,3 @@
-import argparse
 import yaml
 import os
 import numpy as np
@@ -39,41 +38,10 @@ class Evaluation:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--preds_path",
-        "--preds-path",
-        type=str,
-        required=True,
-        help="folder containing the labels and preds",
-    )
-
-    parser.add_argument(
-        "--labels_path",
-        "--labels-path",
-        type=str,
-        required=True,
-        help="folder containing the labels and preds",
-    )
-
-    parser.add_argument(
-        "--output_file",
-        "--output-file",
-        type=str,
-        required=True,
-        help="file to store metrics results as YAML",
-    )
-    parser.add_argument(
-        "--parameters_file",
-        "--parameters-file",
-        type=str,
-        required=True,
-        help="File containing parameters for evaluation",
-    )
-    args = parser.parse_args()
-
     evaluator = Evaluation(
-        args.preds_path, args.labels_path, args.parameters_file, args.output_file
+        "/medperf_predictions",
+        "/medperf_labels",
+        "/medperf_parameters.yaml",
+        "/medperf_results.yaml",
     )
-
     evaluator.run()

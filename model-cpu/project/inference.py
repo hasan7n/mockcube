@@ -1,19 +1,22 @@
 import yaml
-import argparse
 from pathlib import Path
 import os
 
 
 class Inference:
     def __init__(
-        self, data_root, params_file, weights, output_path,
+        self,
+        data_root,
+        params_file,
+        additional_files,
+        output_path,
     ):
 
         with open(params_file, "r") as f:
             self.params = yaml.full_load(f)
 
         self.data_root = data_root
-        self.weights = weights
+        self.weights = os.path.join(additional_files, "weights")
 
         self.out_path = Path(output_path)
         self.out_path.mkdir(exist_ok=True)
@@ -38,40 +41,11 @@ class Inference:
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "--data_path", "--data-path", type=str, required=True, help="Location of data",
-    )
-
-    parser.add_argument(
-        "--weights",
-        "--weights",
-        type=str,
-        required=True,
-        help="Location of mstcn model weights",
-    )
-
-    parser.add_argument(
-        "--params_file",
-        "--params-file",
-        type=str,
-        required=True,
-        help="Configuration file for the inference step",
-    )
-
-    parser.add_argument(
-        "--output_path",
-        "--output-path",
-        type=str,
-        required=True,
-        help="Location to store the predictions",
-    )
-
-    args = parser.parse_args()
     inference_model = Inference(
-        args.data_path, args.params_file, args.weights, args.output_path,
+        "/medperf_data",
+        "/medperf_parameters.yaml",
+        "/medperf_additional_files",
+        "/medperf_predictions",
     )
 
     inference_model.run()
-
